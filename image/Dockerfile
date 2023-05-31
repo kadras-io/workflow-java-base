@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM --platform=$TARGETPLATFORM ubuntu:22.04
 
 ARG USER_UID="1000"
 ARG USER_GID="1000"
@@ -16,10 +16,10 @@ USER $USER_UID:$USER_GID
 
 RUN curl -s "https://get.sdkman.io" | bash
 
-RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
-  yes | sdk install java 11.0.19-tem && \
-  yes | sdk install java 17.0.7-tem && \
-  yes | sdk install java 20-tem && \
-  sdk default java 17.0.7-tem && \
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && yes | sdk install java 11.0.19-tem"
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && yes | sdk install java 17.0.7-tem"
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && yes | sdk install java 20-tem"
+
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk default java 17.0.7-tem && \
   rm -rf $HOME/.sdkman/archives/* && \
   rm -rf $HOME/.sdkman/tmp/*"

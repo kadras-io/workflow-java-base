@@ -36,7 +36,7 @@ jobs:
       
       - name: Compute artifact version
         run: |
-          echo "VERSION=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "VERSION=$(date +'%Y%m%d')" >> $GITHUB_ENV
       
       - name: Build and publish container image
         uses: docker/build-push-action@v4.0.0
